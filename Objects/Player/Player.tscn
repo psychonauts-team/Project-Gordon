@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://c46m6vhjn0ju"]
+
+[ext_resource type="Script" uid="uid://be2wo85w14tal" path="res://Objects/Player/Player.cs" id="1_we6tp"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_861e5"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_we6tp"]
+
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("_head", "_camera")]
+script = ExtResource("1_we6tp")
+_head = NodePath("Head")
+_camera = NodePath("Head/CameraContainer/FirstPersonCamera")
+
+[node name="WorldModel" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_861e5")
+
+[node name="CollisionShape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_we6tp")
+
+[node name="Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+
+[node name="CameraContainer" type="Node3D" parent="Head"]
+
+[node name="FirstPersonCamera" type="Camera3D" parent="Head/CameraContainer"]
+fov = 90.0
